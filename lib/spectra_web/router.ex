@@ -19,6 +19,8 @@ defmodule SpectraWeb.Router do
 
     get "/", PageController, :home
 
+    live "/play", PlayLive
+
     live "/players", PlayerLive.Index, :index
     live "/players/new", PlayerLive.Index, :new
     live "/players/:id/edit", PlayerLive.Index, :edit
@@ -26,6 +28,12 @@ defmodule SpectraWeb.Router do
     live "/players/:id", PlayerLive.Show, :show
     live "/players/:id/show/edit", PlayerLive.Show, :edit
 
+    live "/games", GameLive.Index, :index
+    live "/games/new", GameLive.Index, :new
+    live "/games/:id/edit", GameLive.Index, :edit
+
+    live "/games/:id", GameLive.Show, :show
+    live "/games/:id/show/edit", GameLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
