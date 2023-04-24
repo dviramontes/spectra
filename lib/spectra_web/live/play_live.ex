@@ -15,18 +15,18 @@ defmodule SpectraWeb.PlayLive do
         <:subtitle>example prompt</:subtitle>
         <div>
           <input
-            phx-hook="Slider"
-            phx-change="increment"
-            phx-target={@myself}
+            phx-hook="slider"
             type="range"
             id="slider"
             name="slider"
             min="0"
             max="100"
-            value="10"
+            value={@value}
             step="10"
           />
-
+          <pre>
+        <%= inspect(@value, pretty: true) %>
+        </pre>
         </div>
       </.header>
     </div>
@@ -34,8 +34,7 @@ defmodule SpectraWeb.PlayLive do
   end
 
   @impl true
-  def handle_event("increment", %{"value" => value}, socket) do
-    IO.inspect(value, label: "params")
-    {:noreply, socket}
+  def handle_event("update-slider", %{"value" => value}, socket) do
+    {:noreply, assign(socket, value: String.to_integer(value))}
   end
 end
