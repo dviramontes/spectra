@@ -3,6 +3,7 @@ defmodule SpectraWeb.PlayLive do
 
   @impl true
   def mount(_params, _session, socket) do
+    IO.inspect(self(), label: "pid/self")
     {:ok, assign(socket, value: 0)}
   end
 
@@ -35,6 +36,7 @@ defmodule SpectraWeb.PlayLive do
 
   @impl true
   def handle_event("update-slider", %{"value" => value}, socket) do
-    {:noreply, assign(socket, value: String.to_integer(value))}
+    value = String.to_integer(value)
+    {:noreply, assign(socket, value: value)}
   end
 end
